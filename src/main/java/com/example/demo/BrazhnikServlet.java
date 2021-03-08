@@ -15,8 +15,7 @@ public class BrazhnikServlet extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        RequestDispatcher requestDispatcher= request.getRequestDispatcher("sanyaHTML.html");
-        requestDispatcher.forward(request, response);
+        response.sendRedirect("sanyaHTML.html");
     }
 
     public void destroy() {

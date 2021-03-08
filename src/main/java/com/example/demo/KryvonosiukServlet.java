@@ -13,10 +13,7 @@ public class KryvonosiukServlet extends HttpServlet {
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("vitaliyaHTML.html");
-        requestDispatcher.forward(request,response);
-
-
+        response.sendRedirect("vitaliyaHTML.html");
     }
 
     @Override
