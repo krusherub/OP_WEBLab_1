@@ -1,3 +1,11 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: user
+  Date: 22.11.2021
+  Time: 12:13
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -148,6 +156,7 @@
             width: 20%;
             margin-left: 10%;
         }
+
         /* Собственно сам слайдер */
         .slider{
             max-width: 90%;
@@ -163,10 +172,6 @@
             height: 300px;
             border: none !important;
             box-shadow: none !important;
-
-        }
-        .slider{
-            background-image: url("https://klike.net/uploads/posts/2019-05/1556708032_1.jpg");
         }
         /* Кнопки вперед и назад */
         .slider .prev, .slider .next {
@@ -182,6 +187,9 @@
             font-size: 18px;
             transition: 0.6s ease;
             border-radius: 0 3px 3px 0;
+        }
+        .item{
+            ${image}
         }
         .slider .next {
             right: 0;
@@ -206,53 +214,32 @@
         }
     </style>
 </head>
-<body onload="getPhone()">
+<body onload='showSlides(1)'>
 <script>
-    function getPhone() {
-        let xhr = new XMLHttpRequest(); // инициализируем переменную новым объектом XMLHttpRequest
-        xhr.open("POST", "File.txt"); // определяем параметры для запроса
-        xhr.send(); // отправляем запрос на сервер
-        alert("dsa")
-        xhr.onreadystatechange = function() {
-            // проверяем состояние запроса и числовой код состояния HTTP ответа
-            if (this.readyState == 4 && this.status == 200) {
-
-                str = this.responseText;
-                const words = str.split('\n');
-                changeInfo(words[0],words[1])
-                alert(str)
-                //const data = JSON.parse(this.responseText); // анализируем строку в формате JSON и инициализируем переменную значением, полученным в ходе анализа
-                //document.getElementById("demo").innerHTML = "Телефон пользователя: " + data.phone; // находим элемент по id и изменяем его содержимое значением ключа объекта, содержащегося в переменной
-            }else if(this.status!=200 || this.readyState != 4){
-                alert("eror")
-            }
-        };
-    }
     /* Индекс слайда по умолчанию */
     var slideIndex = 1;
-    showSlides(slideIndex,mainText);
+    showSlides(slideIndex);
 
     /* Функция увеличивает индекс на 1, показывает следующй слайд*/
     function plusSlide() {
-        showSlides(slideIndex += 1,mainText);
+        showSlides(slideIndex += 1);
     }
 
     /* Функция уменьшяет индекс на 1, показывает предыдущий слайд*/
     function minusSlide() {
-        showSlides(slideIndex -= 1,mainText);
+        showSlides(slideIndex -= 1);
     }
 
     /* Устанавливает текущий слайд */
     function currentSlide(n) {
-        showSlides(slideIndex = n,mainText);
+        showSlides(slideIndex = n);
     }
 
     /* Основная функция слайдера */
-    function showSlides(n, text = "something") {
+    function showSlides(n) {
         var i;
         var slides = document.getElementsByClassName("item");
-        var slideText = document.getElementsByClassName("slideText");
-
+        var dots = document.getElementsByClassName("slider-dots_item");
         if (n > slides.length) {
             slideIndex = 1
         }
@@ -261,37 +248,14 @@
         }
         for (i = 0; i < slides.length; i++) {
             slides[i].style.display = "none";
-            slideText[i].innerText = text+i;
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
         }
         slides[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " active";
     }
-    function changeInfo(text,count){
-        let form = document.forms.first;
-        //let text = form.elements.text.value; // read input name=text
 
-        //let count = form.elements.count.value;
-
-        if(isNaN(count) || text.length > 10){
-            alert("Error!");
-            return;
-        }
-        var slider = document.getElementById("slider");
-        slider.innerHTML = "<div class=\"item\">\n" +
-            "                <div class=\"slideText\"></div>\n" +
-            "            </div>\n" +
-            "            <a class=\"prev\" onclick=\"minusSlide()\">&#10094;</a>\n" +
-            "            <a class=\"next\" onclick=\"plusSlide()\">&#10095;</a>";
-
-        for (i = 0; i < count; i++) {
-            slider.innerHTML+="<div class=\"item\">\n" +
-                "                <div class=\"slideText\"></div>\n" +
-                "            </div>";
-        }
-
-        showSlides(1,text);
-        mainText = text;
-        localStorage.setItem("mainSlider",slider.innerHTML);
-    }
 </script>
 <div id="main">
     <div id="first">
@@ -306,25 +270,23 @@
     </div>
     <div id="fourth">
 
-        <div class="slider" id="slider">
-            //del
-             <div class="item">
+        <form name="first"  action="ParamServlet" method="post">
+            <input name="text" value="" style="margin-left: 4%; margin-top: 4%;"> text
+            <input name="count" value="" style="margin-left: 4%"> count
+            <input name="image" value="" style="margin-left: 4%"> image link
+            <button name="change" type="submit" <%--onclick="changeInfo()"--%>>submit</button>
+        </form>
 
-                 <div class="slideText">Заголовок слайда 3</div>
-             </div>
-            <!--slider-->
+        <div class="slider" id="slider">
+            <%--<div class="item">
+                <div class="slideText"></div>
+            </div>--%>
+            ${res}
             <a class="prev" onclick="minusSlide()">&#10094;</a>
             <a class="next" onclick="plusSlide()">&#10095;</a>
         </div>
-        <!--<ol>
-            <li>something...</li>
-            <li>something...</li>
-        </ol>
-        <img src="heart.png" usemap="#mymap">
-        <map name="mymap">
-            <area shape="rect" coords="0,0,50,50" alt="Computer" href="main.html">
-            <area shape="rect" coords="50,50,100,100" alt="Phone" href="second.html">
-        </map>-->
+
+
     </div>
     <div id="fifth">
         <div>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</div>

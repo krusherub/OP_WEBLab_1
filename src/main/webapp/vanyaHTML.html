@@ -1,93 +1,339 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #main{
+            display:grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 25px;
+            border: 2px solid black;
 
-    <title>One Page Resume</title>
+
+            margin-top:15%;
+            margin-bottom:15%;
+            margin-left:30% ;
+            margin-right:30%;
+
+        }
+
+        #second{
+            grid-row-start:5;
+            grid-row-end:17;
+            border: 1px solid black;
+            background: #ECBCED;
+
+            grid-column-start:1;
+            grid-column-end:2;
+
+        }
+        #third{
+            grid-column-start:2;
+            grid-column-end:5;
+            border: 1px solid black;
+            grid-row-start:5;
+            grid-row-end:6;
+
+            background:#BCCFF0;
+
+        }
+        #fourth{
+            grid-row-start:6;
+            grid-row-end:17;
+            border: 1px solid black;
+            grid-column-start:2;
+            grid-column-end:4;
+            background:#E8EEF9;
 
 
-    <style type="text/css">
-        * { margin: 0; padding: 0; }
-        body { font: 16px Helvetica, Sans-Serif; line-height: 24px; background: url("images/noise.jpg"); }
-        .clear { clear: both; }
-        #page-wrap { width: 800px; margin: 40px auto 60px; }
-        #pic { float: right; margin: -30px 0 0 0; }
-        h1 { margin: 0 0 16px 0; padding: 0 0 16px 0; font-size: 42px; font-weight: bold; letter-spacing: -2px; border-bottom: 1px solid #999; }
-        h2 { font-size: 20px; margin: 0 0 6px 0; position: relative; }
-        h2 span { position: absolute; bottom: 0; right: 0; font-style: italic; font-family: Georgia, Serif; font-size: 16px; color: #999; font-weight: normal; }
-        p { margin: 0 0 16px 0; }
-        a { color: #999; text-decoration: none; border-bottom: 1px dotted #999; }
-        a:hover { border-bottom-style: solid; color: black; }
-        ul { margin: 0 0 32px 17px; }
-        #objective { width: 500px; float: left; }
-        #objective p { font-family: Georgia, Serif; font-style: italic; color: #666; }
-        dt { font-style: italic; font-weight: bold; font-size: 18px; text-align: right; padding: 0 26px 0 0; width: 150px; float: left; height: 100px; border-right: 1px solid #999;  }
-        dd { width: 600px; float: right; }
-        dd.clear { float: none; margin: 0; height: 15px; }
+
+
+        }
+
+
+        #fifth{
+            grid-row-start:6;
+            grid-row-end:17;
+            border: 1px solid black;
+            grid-column-start:4;
+            grid-column-end:5;
+            background:#ECBCED;
+        }
+        #sixth{
+            grid-row-start:17;
+            grid-row-end:21;
+            border: 1px solid black;
+            grid-column-start:1;
+            grid-column-end:5;
+            background:#C1E7EB;
+
+            display:grid;
+            grid-template-columns: repeat(20, 1fr);
+            grid-auto-rows: 20px;
+        }
+        #first{
+            grid-column-start: 1;
+            grid-column-end: 5;
+
+            grid-row-start:1;
+            grid-row-end:5;
+
+            background:#C1E7EB;
+            border: 1px solid black;
+
+            display:grid;
+            grid-template-columns: repeat(20, 1fr);
+            grid-auto-rows: 20px;
+
+            /*white-space: nowrap; */
+
+        }
+        #first #f2{
+            border: 1px solid black;
+
+            grid-row-start:3;
+            grid-row-end:4;
+
+            grid-column-start: 2;
+            grid-column-end: 6;
+            background:white;
+
+            font-weight:bold
+
+        }
+        #sixth #s2{
+            border: 1px solid black;
+
+            grid-row-start:3;
+            grid-row-end:4;
+
+            grid-column-start: 16;
+            grid-column-end: 20;
+            background:white;
+
+            font-weight:bold
+        }
+        #sixth #s1{
+
+            text-align: left;
+            grid-column-start: 1;
+            grid-column-end: 20;
+
+            grid-row-start:3;
+            grid-row-end:4;
+        }
+        #first #f1{
+
+            grid-column-start: 15;
+            grid-column-end: 21;
+
+
+        }
+        #second div{
+
+            margin-top: 40%;
+
+            text-align: center;
+
+        }
+
+        #third div{
+            text-align: right;
+        }
+        #fifth div{
+            margin-top:40%;
+        }
+        #fourth img{
+            width: 20%;
+            margin-left: 10%;
+        }
+        /* Собственно сам слайдер */
+        .slider{
+            max-width: 90%;
+            position: relative;
+            margin: auto;
+            height: 300px;
+            margin-bottom: 15px;
+        }
+        /* Картинка мастабируется по отношению к родительскому элементу */
+        .slider .item {
+            object-fit: cover;
+            width: 100%;
+            height: 300px;
+            border: none !important;
+            box-shadow: none !important;
+
+        }
+        .slider{
+            background-image: url("https://klike.net/uploads/posts/2019-05/1556708032_1.jpg");
+        }
+        /* Кнопки вперед и назад */
+        .slider .prev, .slider .next {
+            cursor: pointer;
+            position: absolute;
+            top: 0;
+            top: 40%;
+            width: auto;
+            margin-top: -22px;
+            padding: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+        }
+        .slider .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+        /* При наведении на кнопки добавляем фон кнопок */
+        .slider .prev:hover,
+        .slider .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        /* Заголовок слайда */
+        .slideText {
+            position: absolute;
+            color: #fff;
+            font-size: 35px;
+            /* Выравнивание текста по горизонтали и по вертикали*/
+            left: 50%;
+            top: 40%;
+            transform: translate(-50%, -50%);
+            /* Тень*/
+            text-shadow: 1px 1px 1px #000, 0 0 1em #000;
+        }
     </style>
 </head>
+<body onload="getPhone()">
+<script>
+    function getPhone() {
+        let xhr = new XMLHttpRequest(); // инициализируем переменную новым объектом XMLHttpRequest
+        xhr.open("POST", "File.txt"); // определяем параметры для запроса
+        xhr.send(); // отправляем запрос на сервер
+        alert("dsa")
+        xhr.onreadystatechange = function() {
+            // проверяем состояние запроса и числовой код состояния HTTP ответа
+            if (this.readyState == 4 && this.status == 200) {
 
-<body>
+                str = this.responseText;
+                const words = str.split('\n');
+                changeInfo(words[0],words[1])
+                alert(str)
+                //const data = JSON.parse(this.responseText); // анализируем строку в формате JSON и инициализируем переменную значением, полученным в ходе анализа
+                //document.getElementById("demo").innerHTML = "Телефон пользователя: " + data.phone; // находим элемент по id и изменяем его содержимое значением ключа объекта, содержащегося в переменной
+            }else if(this.status!=200 || this.readyState != 4){
+                alert("eror")
+            }
+        };
+    }
+    /* Индекс слайда по умолчанию */
+    var slideIndex = 1;
+    showSlides(slideIndex,mainText);
 
-<div id="page-wrap">
+    /* Функция увеличивает индекс на 1, показывает следующй слайд*/
+    function plusSlide() {
+        showSlides(slideIndex += 1,mainText);
+    }
 
-    <img src="images/photo_2020-12-12_00-21-13.png" height="320" width="256"/>
+    /* Функция уменьшяет индекс на 1, показывает предыдущий слайд*/
+    function minusSlide() {
+        showSlides(slideIndex -= 1,mainText);
+    }
 
-    <dd class="clear"></dd>
+    /* Устанавливает текущий слайд */
+    function currentSlide(n) {
+        showSlides(slideIndex = n,mainText);
+    }
 
-    <div id="contact-info" class="vcard">
+    /* Основная функция слайдера */
+    function showSlides(n, text = "something") {
+        var i;
+        var slides = document.getElementsByClassName("item");
+        var slideText = document.getElementsByClassName("slideText");
 
-        <!-- Microformats! -->
+        if (n > slides.length) {
+            slideIndex = 1
+        }
+        if (n < 1) {
+            slideIndex = slides.length
+        }
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+            slideText[i].innerText = text+i;
+        }
+        slides[slideIndex - 1].style.display = "block";
+    }
+    function changeInfo(text,count){
+        let form = document.forms.first;
+        //let text = form.elements.text.value; // read input name=text
 
-        <h1 class="fn">Ivan Devitskyi</h1>
+        //let count = form.elements.count.value;
 
-        <p>
-            Cell: <span class="tel">+380971901749</span><br />
-            Email: <a class="email" href="mailto:forbattlenetonly14@gmail.com">forbattlenetonly14@gmail.com</a>
-        </p>
+        if(isNaN(count) || text.length > 10){
+            alert("Error!");
+            return;
+        }
+        var slider = document.getElementById("slider");
+        slider.innerHTML = "<div class=\"item\">\n" +
+            "                <div class=\"slideText\"></div>\n" +
+            "            </div>\n" +
+            "            <a class=\"prev\" onclick=\"minusSlide()\">&#10094;</a>\n" +
+            "            <a class=\"next\" onclick=\"plusSlide()\">&#10095;</a>";
+
+        for (i = 0; i < count; i++) {
+            slider.innerHTML+="<div class=\"item\">\n" +
+                "                <div class=\"slideText\"></div>\n" +
+                "            </div>";
+        }
+
+        showSlides(1,text);
+        mainText = text;
+        localStorage.setItem("mainSlider",slider.innerHTML);
+    }
+</script>
+<div id="main">
+    <div id="first">
+        <div id="f1">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</div>
+        <div id="f2">some text</div>
     </div>
-
-    <div id="objective">
-        <p>
-            I am an outgoing and energetic (ask anybody) young professional, seeking a
-            career that fits my professional skills, personality, and murderous tendencies.
-            My squid-like head is a masterful problem solver and inspires fear in who gaze upon it.
-            I can bring world domination to your organization.
-        </p>
+    <div id="second">
+        <div>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</div>
     </div>
+    <div id="third">
+        <div>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+    </div>
+    <div id="fourth">
 
-    <div class="clear"></div>
+        <div class="slider" id="slider">
+            //del
+             <div class="item">
 
-    <dl>
-        <dd class="clear"></dd>
-
-        <dt>Education</dt>
-        <dd>
-            <h2>Kyiv Polytechnic University </h2>
-            <p><strong>Major:</strong> Software Engineering<br />
-                <strong>Course of study:</strong> 1st</p>
-        </dd>
-
-        <dd class="clear"></dd>
-
-        <dt>Skills</dt>
-        <dd>
-            <h2>Office skills</h2>
-            <p>Office and records management, database administration, event organization, customer support, travel coordination</p>
-
-            <h2>Computer skills</h2>
-            <p>Microsoft productivity software (Word, Excel, etc), Adobe Creative Suite, Windows</p>
-        </dd>
-
-    </dl>
-
-    <div class="clear"></div>
+                 <div class="slideText">Заголовок слайда 3</div>
+             </div>
+            <!--slider-->
+            <a class="prev" onclick="minusSlide()">&#10094;</a>
+            <a class="next" onclick="plusSlide()">&#10095;</a>
+        </div>
+        <!--<ol>
+            <li>something...</li>
+            <li>something...</li>
+        </ol>
+        <img src="heart.png" usemap="#mymap">
+        <map name="mymap">
+            <area shape="rect" coords="0,0,50,50" alt="Computer" href="main.html">
+            <area shape="rect" coords="50,50,100,100" alt="Phone" href="second.html">
+        </map>-->
+    </div>
+    <div id="fifth">
+        <div>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</div>
+    </div>
+    <div id="sixth">
+        <div id="s1">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+        <div id="s2"> another text</div>
+    </div>
 
 </div>
-
 </body>
-
 </html>

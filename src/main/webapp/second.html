@@ -148,6 +148,7 @@
             width: 20%;
             margin-left: 10%;
         }
+
         /* Собственно сам слайдер */
         .slider{
             max-width: 90%;
@@ -163,10 +164,6 @@
             height: 300px;
             border: none !important;
             box-shadow: none !important;
-
-        }
-        .slider{
-            background-image: url("https://klike.net/uploads/posts/2019-05/1556708032_1.jpg");
         }
         /* Кнопки вперед и назад */
         .slider .prev, .slider .next {
@@ -206,27 +203,26 @@
         }
     </style>
 </head>
-<body onload="getPhone()">
+<body onload='showSlides(1)'>
 <script>
+   // mainText = "something";
     function getPhone() {
         let xhr = new XMLHttpRequest(); // инициализируем переменную новым объектом XMLHttpRequest
-        xhr.open("POST", "File.txt"); // определяем параметры для запроса
+        xhr.open("GET", "scratch.json"); // определяем параметры для запроса
         xhr.send(); // отправляем запрос на сервер
-        alert("dsa")
+
         xhr.onreadystatechange = function() {
             // проверяем состояние запроса и числовой код состояния HTTP ответа
             if (this.readyState == 4 && this.status == 200) {
-
-                str = this.responseText;
-                const words = str.split('\n');
-                changeInfo(words[0],words[1])
-                alert(str)
+                alert("ok")
                 //const data = JSON.parse(this.responseText); // анализируем строку в формате JSON и инициализируем переменную значением, полученным в ходе анализа
                 //document.getElementById("demo").innerHTML = "Телефон пользователя: " + data.phone; // находим элемент по id и изменяем его содержимое значением ключа объекта, содержащегося в переменной
-            }else if(this.status!=200 || this.readyState != 4){
+            }else if(this.status!=200){
                 alert("eror")
             }
         };
+
+
     }
     /* Индекс слайда по умолчанию */
     var slideIndex = 1;
@@ -265,11 +261,11 @@
         }
         slides[slideIndex - 1].style.display = "block";
     }
-    function changeInfo(text,count){
+    function changeInfo(){
         let form = document.forms.first;
-        //let text = form.elements.text.value; // read input name=text
+        let text = form.elements.text.value; // read input name=text
 
-        //let count = form.elements.count.value;
+        let count = form.elements.count.value;
 
         if(isNaN(count) || text.length > 10){
             alert("Error!");
@@ -292,6 +288,7 @@
         mainText = text;
         localStorage.setItem("mainSlider",slider.innerHTML);
     }
+
 </script>
 <div id="main">
     <div id="first">
@@ -306,25 +303,21 @@
     </div>
     <div id="fourth">
 
-        <div class="slider" id="slider">
-            //del
-             <div class="item">
+        <form name="first">  <!--action="ParamServlet" method="post"-->
+            <input name="text" value="" style="margin-left: 4%; margin-top: 4%;">
+            <input name="count" value="" style="margin-left: 4%">
+            <button name="change" type="button" onclick="changeInfo()">submit</button>
+        </form>
 
-                 <div class="slideText">Заголовок слайда 3</div>
-             </div>
-            <!--slider-->
+        <div class="slider" id="slider">
+            <div class="item">
+                <div class="slideText"></div>
+            </div>
             <a class="prev" onclick="minusSlide()">&#10094;</a>
             <a class="next" onclick="plusSlide()">&#10095;</a>
         </div>
-        <!--<ol>
-            <li>something...</li>
-            <li>something...</li>
-        </ol>
-        <img src="heart.png" usemap="#mymap">
-        <map name="mymap">
-            <area shape="rect" coords="0,0,50,50" alt="Computer" href="main.html">
-            <area shape="rect" coords="50,50,100,100" alt="Phone" href="second.html">
-        </map>-->
+
+
     </div>
     <div id="fifth">
         <div>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</div>

@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Cache-control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
     <title>Title</title>
     <style>
         #main{
@@ -157,16 +159,12 @@
             margin-bottom: 15px;
         }
         /* Картинка мастабируется по отношению к родительскому элементу */
-        .slider .item {
+        .slider .item  {
             object-fit: cover;
             width: 100%;
             height: 300px;
             border: none !important;
             box-shadow: none !important;
-
-        }
-        .slider{
-            background-image: url("https://klike.net/uploads/posts/2019-05/1556708032_1.jpg");
         }
         /* Кнопки вперед и назад */
         .slider .prev, .slider .next {
@@ -204,30 +202,38 @@
             /* Тень*/
             text-shadow: 1px 1px 1px #000, 0 0 1em #000;
         }
+
     </style>
 </head>
 <body onload="getPhone()">
 <script>
     function getPhone() {
         let xhr = new XMLHttpRequest(); // инициализируем переменную новым объектом XMLHttpRequest
-        xhr.open("POST", "File.txt"); // определяем параметры для запроса
+       // rnd = Math.floor(Math.random() * 10000);
+        xhr.open("GET", "File.txt"); // определяем параметры для запроса
         xhr.send(); // отправляем запрос на сервер
-        alert("dsa")
+
         xhr.onreadystatechange = function() {
             // проверяем состояние запроса и числовой код состояния HTTP ответа
             if (this.readyState == 4 && this.status == 200) {
 
                 str = this.responseText;
                 const words = str.split('\n');
-                changeInfo(words[0],words[1])
-                alert(str)
+                changeInfo(words[0],words[1]);
+                alert(str);
+                var slides = document.getElementsByClassName("item");
+                for (i = 0; i < slides.length; i++) {
+                    slides[i].style.backgroundImage = "url('"+words[2]+"')";
+                }
+
                 //const data = JSON.parse(this.responseText); // анализируем строку в формате JSON и инициализируем переменную значением, полученным в ходе анализа
                 //document.getElementById("demo").innerHTML = "Телефон пользователя: " + data.phone; // находим элемент по id и изменяем его содержимое значением ключа объекта, содержащегося в переменной
             }else if(this.status!=200 || this.readyState != 4){
-                alert("eror")
+               // alert("eror")
             }
         };
     }
+    mainText = ""
     /* Индекс слайда по умолчанию */
     var slideIndex = 1;
     showSlides(slideIndex,mainText);
@@ -292,6 +298,9 @@
         mainText = text;
         localStorage.setItem("mainSlider",slider.innerHTML);
     }
+    function setImage(url){
+
+    }
 </script>
 <div id="main">
     <div id="first">
@@ -307,11 +316,6 @@
     <div id="fourth">
 
         <div class="slider" id="slider">
-            //del
-             <div class="item">
-
-                 <div class="slideText">Заголовок слайда 3</div>
-             </div>
             <!--slider-->
             <a class="prev" onclick="minusSlide()">&#10094;</a>
             <a class="next" onclick="plusSlide()">&#10095;</a>

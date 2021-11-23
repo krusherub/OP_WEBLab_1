@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #main{
+            display:grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 25px;
+            border: 2px solid black;
+
+
+            margin-top:15%;
+            margin-bottom:15%;
+            margin-left:30% ;
+            margin-right:30%;
+
+        }
+
+        #second{
+            grid-row-start:5;
+            grid-row-end:17;
+            border: 1px solid black;
+            background: #ECBCED;
+
+            grid-column-start:1;
+            grid-column-end:2;
+
+        }
+        #third{
+            grid-column-start:2;
+            grid-column-end:5;
+            border: 1px solid black;
+            grid-row-start:5;
+            grid-row-end:6;
+
+            background:#BCCFF0;
+
+        }
+        #fourth{
+            grid-row-start:6;
+            grid-row-end:17;
+            border: 1px solid black;
+            grid-column-start:2;
+            grid-column-end:4;
+            background:#E8EEF9;
+
+
+
+
+        }
+
+
+        #fifth{
+            grid-row-start:6;
+            grid-row-end:17;
+            border: 1px solid black;
+            grid-column-start:4;
+            grid-column-end:5;
+            background:#ECBCED;
+        }
+        #sixth{
+            grid-row-start:17;
+            grid-row-end:21;
+            border: 1px solid black;
+            grid-column-start:1;
+            grid-column-end:5;
+            background:#C1E7EB;
+
+            display:grid;
+            grid-template-columns: repeat(20, 1fr);
+            grid-auto-rows: 20px;
+        }
+        #first{
+            grid-column-start: 1;
+            grid-column-end: 5;
+
+            grid-row-start:1;
+            grid-row-end:5;
+
+            background:#C1E7EB;
+            border: 1px solid black;
+
+            display:grid;
+            grid-template-columns: repeat(20, 1fr);
+            grid-auto-rows: 20px;
+
+            /*white-space: nowrap; */
+
+        }
+        #first #f2{
+            border: 1px solid black;
+
+            grid-row-start:3;
+            grid-row-end:4;
+
+            grid-column-start: 2;
+            grid-column-end: 6;
+            background:white;
+
+            font-weight:bold
+
+        }
+        #sixth #s2{
+            border: 1px solid black;
+
+            grid-row-start:3;
+            grid-row-end:4;
+
+            grid-column-start: 16;
+            grid-column-end: 20;
+            background:white;
+
+            font-weight:bold
+        }
+        #sixth #s1{
+
+            text-align: left;
+            grid-column-start: 1;
+            grid-column-end: 20;
+
+            grid-row-start:3;
+            grid-row-end:4;
+        }
+        #first #f1{
+
+            grid-column-start: 15;
+            grid-column-end: 21;
+
+
+        }
+        #second div{
+
+            margin-top: 40%;
+
+            text-align: center;
+
+        }
+
+        #third div{
+            text-align: right;
+        }
+        #fifth div{
+            margin-top:40%;
+        }
+        #fourth img{
+            width: 20%;
+            margin-left: 10%;
+        }
+    </style>
+</head>
+<body>
+<div id="main">
+    <div id="first">
+        <div id="f1">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</div>
+        <div id="f2">some text</div>
+    </div>
+    <div id="second">
+        <div>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</div>
+    </div>
+    <div id="third">
+        <div>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+    </div>
+    <div id="fourth">
+        <ol>
+            <li>something...</li>
+            <li>something...</li>
+        </ol>
+        <img src="heart.png" usemap="#mymap">
+        <map name="mymap">
+            <area shape="rect" coords="0,0,50,50" alt="Computer" href="main.html">
+            <area shape="rect" coords="50,50,100,100" alt="Phone" href="second.html">
+        </map>
+    </div>
+    <div id="fifth">
+        <div>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</div>
+    </div>
+    <div id="sixth">
+        <div id="s1">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+        <div id="s2"> another text</div>
+    </div>
+
+</div>
+</body>
+</html>

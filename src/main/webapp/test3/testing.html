@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Использование JavaScript методов open() и send() объекта XMLHttpRequest</title>
+</head>
+<body>
+<button onclick = "getPhone()">Запросить телефон</button> <!-- добавляем атрибут событий onclick -->
+<div id = "demo"></div>
+<script>
+    function getPhone() {
+        let xhr = new XMLHttpRequest(); // инициализируем переменную новым объектом XMLHttpRequest
+        xhr.open("GET", "user.json"); // определяем параметры для запроса
+        xhr.send(); // отправляем запрос на сервер
+
+        xhr.onreadystatechange = function() {
+            // проверяем состояние запроса и числовой код состояния HTTP ответа
+            if (this.readyState == 4 && this.status == 200) {
+                const data = JSON.parse(this.responseText); // анализируем строку в формате JSON и инициализируем переменную значением, полученным в ходе анализа
+                document.getElementById("demo").innerHTML = "Телефон пользователя: " + data.phone; // находим элемент по id и изменяем его содержимое значением ключа объекта, содержащегося в переменной
+            }
+        };
+    }
+</script>
+</body>
+</html>
